@@ -1,42 +1,29 @@
 variable "region" {
-  description = "The AWS region to deploy the ALB"
-  type        = string
-  default     = "us-east-2"  
+  default = "us-east-1"
 }
-variable "alb_name" {
-  description = "The name of the Application Load Balancer"
-  type        = string
-  default     = "my-alb"
+
+variable "vpc_id" {
+  description = "The ID of the VPC"
+  type = string
 }
-variable "alb_internal" {
-  description = "Whether the load balancer is internal or external"
-  type        = bool
+
+variable "nlb_name" {
+  description = "The name of the NLB"
+  default = "my-nlb"
+}
+
+variable "nlb_internal" {
+  description = "Whether the NLB is internal"
   default     = false
 }
 
-/*
-variable "security_groups" {
-  description = "A list of security group IDs to assign to the load balancer"
-  type        = list(string)
-  default     = [aws_security_group.sg.id]
-}
-variable "subnets" {
-  description = "A list of subnet IDs to attach to the load balancer"
-  type        = list(string)
-  default     = aws_subnet.subnet.id
+variable "enable_deletion_protection" {
+  description = "Whether to enable deletion protection for the NLB"
+  default     = false
 }
 
-*/
-variable "enable_deletion_protection" {
-  description = "Whether deletion protection is enabled"
-  type        = bool
-  default     = true
-}
 variable "tags" {
-  description = "A map of tags to assign to the resource"
+  description = "Tags to apply to resources"
   type        = map(string)
-  default = {
-    Environment = "dev"
-    Project     = "my-project"
-  }
+  default     = {}
 }
